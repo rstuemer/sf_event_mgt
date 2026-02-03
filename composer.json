@@ -3,6 +3,7 @@
   "type": "typo3-cms-extension",
   "description": "Configurable event management and registration extension based on ExtBase and Fluid",
   "homepage": "https://github.com/derhansen/sf_event_mgt",
+  "version": "9.0.0",
   "support": {
     "issues": "https://github.com/derhansen/sf_event_mgt/issues"
   },
@@ -34,6 +35,12 @@
   "extra": {
     "typo3/cms": {
       "extension-key": "sf_event_mgt"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "typo3/cms-composer-installers": true,
+      "typo3/class-alias-loader": true
     }
   }
 }
