@@ -36,9 +36,9 @@ abstract class AbstractPluginPreview
     /**
      * Returns the records flexform as array
      */
-    protected function getFlexFormData(string $flexform): array
+    protected function getFlexFormData(array $flexform): array
     {
-        $flexFormData = GeneralUtility::xml2array($flexform);
+        $flexFormData = $flexform ; //GeneralUtility::xml2array($flexform);
         if (!is_array($flexFormData)) {
             $flexFormData = [];
         }

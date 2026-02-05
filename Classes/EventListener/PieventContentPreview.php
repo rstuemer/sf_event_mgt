@@ -14,6 +14,8 @@ namespace DERHANSEN\SfEventMgt\EventListener;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
+use TYPO3\CMS\Core\Domain\FlexFormFieldValues;
+use TYPO3\CMS\Core\Domain\Record;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class PieventContentPreview extends AbstractPluginPreview
@@ -42,10 +44,15 @@ final class PieventContentPreview extends AbstractPluginPreview
         $event->setPreviewContent($previewContent);
     }
 
-    private function renderPreviewContent(array $record, ServerRequestInterface $request): string
+    private function renderPreviewContent(Record $record, ServerRequestInterface $request): string
     {
         $data = [];
-        $flexFormData = $this->getFlexFormData($record['pi_flexform']);
+        $record= $record->toArray();
+        /**
+         * @var FlexFormFieldValues $flexform
+         */
+        $flexform = $record['pi_flexform'];
+        $flexFormData = $flexform->toArray();
 
         $this->setPluginPidConfig($data, $flexFormData, 'listPid', 'additional');
         $this->setPluginPidConfig($data, $flexFormData, 'detailPid', 'additional');
